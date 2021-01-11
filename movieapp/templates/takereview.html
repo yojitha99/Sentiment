@@ -1,0 +1,24 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<title>New Review</title>
+	{% load static %}
+	<link type="text/css"  rel="stylesheet" href='{% static "mystyle.css" %}' >
+</head>
+<body>
+<div id="header">
+MOVIE REVIEW SENTIMENT ANALYSIS
+</div>
+<div id="sadsmiley"></div>
+<center>
+<h3>Upload review</h3>
+<div id="formid">
+<form method="POST" action="/reviewadd/{{movieid}}">
+	{% csrf_token %}
+	<span style="text-align:left;font-size:33px">Enter review:</span><br>
+	{{ form.review }}
+<input type="submit" value="submit">
+</form> 
+</center>
+</body>
+</html>

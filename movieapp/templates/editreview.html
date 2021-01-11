@@ -1,0 +1,26 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<title>Edit Review</title>
+	{% load static %}
+	<link type="text/css"  rel="stylesheet" href='{% static "mystyle.css" %}' >
+</head>
+<body>
+<div id="header">
+MOVIE REVIEW SENTIMENT ANALYSIS
+</div>
+<div id="sadsmiley"></div>
+<center>
+<h3>Update review</h3>
+<div id="formid">
+<form method="POST" action="/updatereview/{{reviews.id}}">
+	{% csrf_token %}
+	<span style="text-align:left;font-size:33px">Enter Review:</span><br>
+	<input type="text" name="review" required maxlength="100" value={{reviews.review}}>
+	<br>
+<input type="submit" value="update">
+</form> 
+</div>
+</center>
+</body>
+</html>

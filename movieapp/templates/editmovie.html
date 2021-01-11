@@ -1,0 +1,26 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<title>Movie Edit</title>
+	{% load static %}
+	<link type="text/css"  rel="stylesheet" href='{% static "mystyle.css" %}' >
+</head>
+<body>
+<div id="header">
+MOVIE REVIEW SENTIMENT ANALYSIS
+</div>
+<div id="sadsmiley"></div>
+<center>
+<h3>Update movie</h3>
+<div id="formid">
+<form method="POST" action="/updatemovie/{{movies.id}}">
+	{% csrf_token %}
+	<span style="text-align:left;font-size:33px">Enter movie name:</span><br>
+	<input type="text" name="mname" required maxlength="50" value={{movies.mname}}>
+	<br>
+<input type="submit" value="update">
+</form> 
+</center>
+</div>
+</body>
+</html>

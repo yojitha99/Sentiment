@@ -1,0 +1,46 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<title>Review</title>
+	{% load static %}
+	<link type="text/css"  rel="stylesheet" href='{% static "mystyle.css" %}' >
+</head>
+<body>
+<div id="header">
+MOVIE REVIEW SENTIMENT ANALYSIS
+</div>
+<div id="sadsmiley"></div>
+<h1>Reviews</h1>
+<center>
+<table id="id1">
+<tr>
+	<th>Review ID</th>
+	<th>Review</th>
+	<th>Sentiment Prediction(Naive)</th>
+	<th>Sentiment Prediction(Vader)</th>
+	<th>Actions</th>
+</tr>
+{% for item in reviews %}
+<tr>
+	<td>{{item.id}}</td>
+	<td>{{item.review}}</td>
+	<td>{{item.sentinaive}}</td>
+	<td>{{item.sentivader}}</td>
+	<td>
+	<a href="/editreview/{{item.id}}">Edit review</a>
+	<a href="/delreview/{{item.id}}/{{item.movieid}}">Delete review</a>
+	</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+<button class="btn"><a href="/showmovie">Go to movies page</a></button>
+<button class="btn"><a href="/reviewadd/{{movieid}}">Add new Review</a></button>
+<button class="btn"><a href="/showgraph/{{movieid}}">Graph</a></button>
+<!--{% for item in reviews %}
+<a href="/reviewadd/{{item.movieid}}">Add new Review record</a>
+{{ break }}
+{% endfor %}-->
+</center>
+</body>
+</html>
