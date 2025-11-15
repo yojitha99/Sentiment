@@ -1,0 +1,38 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<title>Movies</title>
+	{% load static %}
+	<link type="text/css"  rel="stylesheet" href='{% static "mystyle.css" %}'>
+</head>
+<body>
+<div id="header">
+MOVIE REVIEW SENTIMENT ANALYSIS
+</div>
+<div id="sadsmiley"></div>
+<h2>Select a movie to add review</h2>
+<center>
+<table id="id1">
+<tr style="text-align:center">
+	<th>Movie ID</th>
+	<th>Movie Name</th>
+	<th>Actions</th>
+</tr>
+{% for item in movies %}
+<tr>
+	<td>{{item.id}}</td>
+	<td><a href="/showreview/{{item.id}}">{{item.mname}}</a></td>
+	<td>
+	<a href="/editmovie/{{item.id}}">Edit Movie</a>
+	<a href="/delmovie/{{item.id}}">Delete Movie</a>
+	<a href="/showgraph/{{item.id}}">Graph</a>
+	</td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+<button class="btn"><a href="/movieadd">Add new Movie</a></button>
+</center>
+</body>
+</html>

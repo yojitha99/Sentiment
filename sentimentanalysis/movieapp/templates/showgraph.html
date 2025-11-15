@@ -1,0 +1,110 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<title>Graph</title>
+	{% load static %}
+	<link type="text/css"  rel="stylesheet" href='{% static "mystyle.css" %}'>
+	<link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<style>
+	.row{
+	width:100%;
+	height:100%;
+	}
+	.f{
+	float:left;
+	}
+	.f.left{
+	}
+	.f.right{
+	}
+	</style>
+</head>
+<body>
+<div id="header">
+MOVIE REVIEW SENTIMENT ANALYSIS
+</div>
+<div id="sadsmiley"></div>
+<center><h1>GRAPHICAL ANALYSIS</h1></center>
+<div style="align:left;">Positive reviews : {{poscount}}<br>
+Negative reviews : {{negcount}}
+</div>
+<div class="row">
+<div class="f left" style="padding:20px 100px 10px 100px;width=50%">
+<h1> BAR GRAPH</h1>
+<div style="display:block;width:250px;height:250px"><canvas id="myChart" style="display:block;width:200px;height:200px"></canvas></div>
+</div>
+<div class="f right" style="padding:20px 100px 10px 100px;width=50%">
+<h1> PIE CHART</h1>
+<div style="display:block;width:250px;height:250px"><canvas id="myPie" style="display:block;width:200px;height:200px"></canvas></div>
+</div>
+</div>
+<center><button class="btn"><a href="/showmovie">Go to movies page</a></button></center>
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Positive', 'Negative'],
+        datasets: [{
+            label: '# of Positive',
+            data: [{{poscount}},{{negcount}}],
+            backgroundColor: [
+                'rgba(0,255,0,0.1)',
+                'rgba(255,0,0,0.1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById('myPie');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Positive', 'Negative'],
+        datasets: [{
+            label: '# of Positive',
+            data: [{{poscount}},{{negcount}}],
+            backgroundColor: [
+                'rgba(0,255,0,0.1)',
+                'rgba(255,0,0,0.1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+</body>
+</html>
